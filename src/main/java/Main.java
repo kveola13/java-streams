@@ -3,6 +3,7 @@ package main.java;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -24,6 +25,9 @@ public class Main {
         System.out.println(aboveFive);
         boolean any21 = people.stream().anyMatch(person -> person.getAge() > 21);
         System.out.println(any21);
+        boolean noMatch = people.stream().noneMatch(person -> person.getName().equals("Antonidas"));
+        System.out.println(noMatch);
+        people.stream().max(Comparator.comparing(Person::getAge)).ifPresent(System.out::println);
     }
 
     private static List<Person> getPeople() {
