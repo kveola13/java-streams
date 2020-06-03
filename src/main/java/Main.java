@@ -18,8 +18,12 @@ public class Main {
         List<Person> femaleStream = people.stream().filter(person -> person.getGender().equals(Gender.FEMALE)).collect(Collectors.toList());
         //femaleStream.forEach(System.out::println);
         //people.forEach(System.out::println);
-        List<Person> peopleSorted = people.stream().sorted(Comparator.comparing(Person::getAge)).collect(Collectors.toList());
+        List<Person> peopleSorted = people.stream().sorted(Comparator.comparing(Person::getAge).reversed()).collect(Collectors.toList());
         peopleSorted.forEach(System.out::println);
+        boolean aboveFive = people.stream().allMatch(person -> person.getAge() > 5);
+        System.out.println(aboveFive);
+        boolean any21 = people.stream().anyMatch(person -> person.getAge() > 21);
+        System.out.println(any21);
     }
 
     private static List<Person> getPeople() {
