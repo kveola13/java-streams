@@ -15,7 +15,8 @@ public class Main {
             }
         }
         females.forEach(System.out::println);
-
+        List<Person> femaleStream = people.stream().filter(person -> person.getGender().equals(Gender.FEMALE)).collect(Collectors.toList());
+        femaleStream.forEach(System.out::println);
     }
 
     private static List<Person> getPeople() {
