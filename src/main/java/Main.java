@@ -3,6 +3,7 @@ package main.java;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -14,10 +15,10 @@ public class Main {
                 females.add(person);
             }
         }
-        //females.forEach(System.out::println);
+        females.forEach(System.out::println);
         List<Person> femaleStream = people.stream().filter(person -> person.getGender().equals(Gender.FEMALE)).collect(Collectors.toList());
-        //femaleStream.forEach(System.out::println);
-        //people.forEach(System.out::println);
+        femaleStream.forEach(System.out::println);
+        people.forEach(System.out::println);
         List<Person> peopleSorted = people.stream().sorted(Comparator.comparing(Person::getAge).reversed()).collect(Collectors.toList());
         peopleSorted.forEach(System.out::println);
         boolean aboveFive = people.stream().allMatch(person -> person.getAge() > 5);
@@ -27,6 +28,14 @@ public class Main {
         boolean noMatch = people.stream().noneMatch(person -> person.getName().equals("Antonidas"));
         System.out.println(noMatch);
         people.stream().max(Comparator.comparing(Person::getAge)).ifPresent(System.out::println);
+        people.stream().min(Comparator.comparing(Person::getAge)).ifPresent(System.out::println);
+
+        Map<Gender, List<Person>> groupStream = people.stream().collect(Collectors.groupingBy(Person::getGender));
+
+        groupStream.forEach(((gender, people1) -> {
+            System.out.println(gender);
+            people1.forEach(System.out::println);
+        }));
     }
 
     private static List<Person> getPeople() {
