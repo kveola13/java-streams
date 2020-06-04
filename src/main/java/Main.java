@@ -1,9 +1,6 @@
 package main.java;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -36,6 +33,8 @@ public class Main {
             System.out.println(gender);
             people1.forEach(System.out::println);
         }));
+
+        people.stream().filter(person -> person.getGender().equals(Gender.FEMALE)).max(Comparator.comparing(Person::getAge)).map(Person::getName).ifPresent(System.out::println);
     }
 
     private static List<Person> getPeople() {
