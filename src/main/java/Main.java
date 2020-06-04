@@ -34,7 +34,11 @@ public class Main {
             people1.forEach(System.out::println);
         }));
 
-        people.stream().filter(person -> person.getGender().equals(Gender.FEMALE)).max(Comparator.comparing(Person::getAge)).map(Person::getName).ifPresent(System.out::println);
+        people.stream().filter(person -> person.getGender()
+                .equals(Gender.FEMALE))
+                .max(Comparator.comparing(Person::getAge))
+                .map(Person::getName)
+                .ifPresent(System.out::println);
     }
 
     private static List<Person> getPeople() {
